@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import Home from "./pages/home/home";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: 'Home page',
+      counter: 1
+    }
+  }
+  onGreet = () => {
+    alert(this.state.title);
+  }
+  getDataFromChild = (data) => {
+    this.setState({
+      title: data
+    })
+  }
+  render() {
+    return (
+      <div className="App">
+        <Home title={this.state.title} counter={this.state.counter} greet={this.onGreet} changeLink={this.getDataFromChild}>
+          <hr/>
+        </Home>
+      </div>
+    );
+  }
 }
 
 export default App;
